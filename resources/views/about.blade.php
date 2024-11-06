@@ -1,80 +1,36 @@
 @extends('layouts.guest')
+
 @section('content')
 <section class="bg-center h-96" style="background-image: url('https://images.contentstack.io/v3/assets/blt1306150c2c4003bc/bltab1351a691953b85/63e05e4590fb3569e47fb4c3/00-what-to-see-and-do-in-bali-getty-cropped.jpg');">
     <div class="flex justify-center items-center h-full bg-black bg-opacity-50 text-center text-white">
         <div>
-            <h2 class="text-4xl font-bold">Tentang Kami</h2>
+            <h2 class="text-4xl font-bold">Tentang Travela</h2>
             <p class="mt-4 text-lg">Kenali lebih dekat perjalanan kami dalam memberikan pengalaman wisata terbaik.</p>
         </div>
     </div>
 </section>
 
-<section class="container mx-auto px-4 py-16">
-    <div class="text-center mb-16">
-        <h3 class="text-3xl font-semibold text-blue-600 mb-4">Siapa Kami?</h3>
-        <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-            Kami adalah agen perjalanan yang telah berpengalaman lebih dari 10 tahun dalam menyediakan paket wisata di Indonesia. Kami mengutamakan kualitas dan kenyamanan, menawarkan berbagai pilihan destinasi yang menarik, serta memastikan setiap perjalanan yang Anda lakukan menjadi kenangan tak terlupakan.
-        </p>
-    </div>
+<div class="container mx-auto p-6">
+    <h1 class="text-4xl font-bold text-center mb-6">Selamat Datang di Travela!</h1>
+    <p class="text-lg text-center mb-4">Travela adalah aplikasi inovatif yang dirancang untuk memudahkan Anda dalam menjelajahi keindahan dan kekayaan budaya Indonesia. Kami percaya bahwa setiap perjalanan adalah pengalaman yang berharga, dan kami berkomitmen untuk membantu Anda menemukan destinasi wisata terbaik, membeli tiket dengan mudah, serta merencanakan paket liburan yang tak terlupakan.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <!-- Visi -->
-        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-            <h4 class="text-2xl font-semibold text-blue-600 mb-4">Visi Kami</h4>
-            <p class="text-gray-600">Menjadi penyedia layanan wisata terdepan di Indonesia, dengan fokus pada kepuasan pelanggan dan keberlanjutan pariwisata lokal.</p>
-        </div>
+    <h2 class="text-3xl font-semibold mb-4">Visi Kami</h2>
+    <p class="mb-4">Visi kami adalah menjadi platform terdepan dalam industri pariwisata Indonesia, yang menghubungkan wisatawan dengan berbagai destinasi menarik, pengalaman unik, dan layanan terbaik. Kami ingin setiap orang dapat merasakan keindahan alam dan budaya Nusantara dengan cara yang mudah dan menyenangkan.</p>
 
-        <!-- Misi -->
-        <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-            <h4 class="text-2xl font-semibold text-blue-600 mb-4">Misi Kami</h4>
-            <p class="text-gray-600">Memberikan pengalaman wisata yang luar biasa dengan layanan terbaik, memastikan setiap perjalanan sesuai dengan keinginan dan harapan Anda.</p>
-        </div>
-    </div>
+    <h2 class="text-3xl font-semibold mb-4">Misi Kami</h2>
+    <ul class="list-disc list-inside mb-4">
+        <li class="mb-2">Memberikan Akses Mudah: Menyediakan platform yang user-friendly untuk memudahkan pengguna dalam mencari dan membeli tiket wisata serta paket liburan.</li>
+        <li class="mb-2">Mendukung Destinasi Lokal: Bekerja sama dengan penyedia layanan lokal untuk mempromosikan destinasi wisata yang mungkin belum banyak dikenal, sehingga membantu perekonomian lokal.</li>
+        <li class="mb-2">Menciptakan Pengalaman Berkesan: Menawarkan berbagai pilihan paket wisata yang dirancang untuk memenuhi kebutuhan dan preferensi setiap wisatawan, dari petualangan alam hingga pengalaman budaya.</li>
+    </ul>
 
-    <div class="mt-16">
-        <h3 class="text-3xl font-semibold text-blue-600 text-center mb-6">Keunggulan Kami</h3>
-        <p class="text-lg text-gray-700 text-center mb-8">Mengapa memilih kami? Karena kami mengutamakan kenyamanan, keamanan, dan pengalaman yang tak terlupakan untuk setiap perjalanan Anda.</p>
+    <h2 class="text-3xl font-semibold mb-4">Tim Kami</h2>
+    <p class="mb-4">Tim Travela terdiri dari para profesional yang berpengalaman di bidang pariwisata, teknologi, dan layanan pelanggan. Kami memiliki semangat yang sama untuk menjadikan setiap perjalanan Anda menjadi pengalaman yang luar biasa. Kami selalu siap membantu Anda dengan informasi dan dukungan yang Anda butuhkan.</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Keunggulan 1 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-                <h4 class="text-xl font-semibold text-blue-600 mb-4">Pengalaman Profesional</h4>
-                <p class="text-gray-600">Dengan lebih dari 10 tahun pengalaman di industri wisata, kami memiliki tim yang ahli dalam merencanakan perjalanan yang tak terlupakan.</p>
-            </div>
+    <h2 class="text-3xl font-semibold mb-4">Bergabunglah dengan Kami</h2>
+    <p class="mb-4">Kami mengundang Anda untuk menjelajahi keindahan Nusantara bersama kami. Temukan destinasi impian Anda, nikmati kemudahan dalam membeli tiket, dan rencanakan liburan yang tak terlupakan. Bergabunglah dengan komunitas Travela dan mulailah petualangan Anda hari ini!</p>
 
-            <!-- Keunggulan 2 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-                <h4 class="text-xl font-semibold text-blue-600 mb-4">Paket Wisata Personal</h4>
-                <p class="text-gray-600">Setiap perjalanan yang kami tawarkan dapat disesuaikan dengan keinginan dan anggaran Anda, memberikan pengalaman yang sesuai dengan kebutuhan pribadi Anda.</p>
-            </div>
-
-            <!-- Keunggulan 3 -->
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300">
-                <h4 class="text-xl font-semibold text-blue-600 mb-4">Layanan Pelanggan 24/7</h4>
-                <p class="text-gray-600">Tim kami siap melayani Anda kapan saja. Kami memastikan bahwa setiap perjalanan berjalan dengan lancar dan Anda merasa nyaman sepanjang perjalanan.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="mt-16">
-        <h3 class="text-3xl font-semibold text-blue-600 text-center mb-6">Tim Kami</h3>
-        <p class="text-lg text-gray-700 text-center mb-8">Kami terdiri dari tim yang berpengalaman dan berdedikasi untuk memberikan pelayanan terbaik. Setiap anggota tim kami memiliki keahlian khusus dalam bidang pariwisata, yang siap membantu Anda merencanakan perjalanan Anda.</p>
-
-        <div class="flex justify-center gap-8">
-            <!-- Tim 1 -->
-            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden shadow-lg">
-                <img src="https://via.placeholder.com/150" alt="Tim Member" class="w-full h-full object-cover">
-            </div>
-            <!-- Tim 2 -->
-            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden shadow-lg">
-                <img src="https://via.placeholder.com/150" alt="Tim Member" class="w-full h-full object-cover">
-            </div>
-            <!-- Tim 3 -->
-            <div class="w-40 h-40 bg-gray-200 rounded-full overflow-hidden shadow-lg">
-                <img src="https://via.placeholder.com/150" alt="Tim Member" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </div>
-</section>
-
+    <h2 class="text-3xl font-semibold mb-4">Hubungi Kami</h2>
+    <p class="mb-4">Jika Anda memiliki pertanyaan atau ingin mengetahui lebih lanjut tentang layanan kami, jangan ragu untuk menghubungi kami di <a href="{{ route('contact') }}" class="text-primary">kontak</a> atau melalui media sosial kami. Kami siap membantu Anda!</p>
+</div>
 @endsection

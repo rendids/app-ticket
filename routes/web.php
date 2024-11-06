@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PurchaseController;
@@ -11,6 +12,11 @@ use App\Http\Controllers\PurchaseController;
 
 // Rute untuk halaman utama
 Route::get("/", [HomeController::class, "index"])->name("index");
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+});
 
 // Rute untuk halaman destinasi
 Route::get("/destinations", [HomeController::class, "destinations"])->name("destinations");
