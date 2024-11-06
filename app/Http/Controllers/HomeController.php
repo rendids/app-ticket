@@ -23,13 +23,6 @@ class HomeController extends Controller
         return view('tours');
     }
 
-    public function gallery()
-    {
-        // Kode untuk menampilkan halaman galeri
-        return view('gallery');
-    }
-
-
     public function about()
     {
         // Kode untuk menampilkan halaman tentang kami

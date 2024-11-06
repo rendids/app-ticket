@@ -15,7 +15,6 @@ Route::get("/", [HomeController::class, "index"])->name("index");
 // Rute untuk halaman destinasi
 Route::get("/destinations", [HomeController::class, "destinations"])->name("destinations");
 Route::get("/tours", [HomeController::class, "tours"])->name("tours");
-Route::get("/gallery", [HomeController::class, "gallery"])->name("gallery");
 Route::get("/about", [HomeController::class, "about"])->name("about");
 Route::get("/contact", [HomeController::class, "contact"])->name("contact");
 
