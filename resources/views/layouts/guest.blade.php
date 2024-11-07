@@ -52,7 +52,8 @@
 
     @yield('content')
 
-    @extends('layouts.partial.footer')
+    <x-partial.footer />
+
 </body>
 
 </html>

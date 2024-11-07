@@ -52,10 +52,7 @@
             </div>
         </div>
     </div>
-    @extends('layouts.partial.footer')
-
-    <!-- Footer (Partial Footer, if needed) -->
-
+    <x-partial.footer />
 </body>
 
 </html>
