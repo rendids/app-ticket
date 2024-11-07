@@ -20,7 +20,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('register', [AuthController::class, 'register_action'])->name('register.action');
 });
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
@@ -30,8 +30,6 @@ Route::get("/tours", [HomeController::class, "tours"])->name("tours");
 Route::get("/about", [HomeController::class, "about"])->name("about");
 Route::get("/contact", [HomeController::class, "contact"])->name("contact");
 
-Route::get('packages/search', [PackageController::class, 'search']);
-
 Route::get('packages/{id}', [PackageController::class, 'show'])->name('packages.show');
 Route::post('purchase', [PurchaseController::class, 'store']);
 
@@ -39,8 +37,9 @@ Route::get('purchases', [PurchaseController::class, 'history']);
 Route::get('purchases/{id}', [PurchaseController::class, 'show']);
 
 
-
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
 Route::get('packages', [PackageController::class, 'index'])->name('admin.packages.index');
 Route::get('packages/create', [PackageController::class, 'create'])->name('admin.packages.create');
 Route::post('packages', [PackageController::class, 'store'])->name('admin.packages.store');
