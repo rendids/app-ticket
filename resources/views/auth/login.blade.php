@@ -13,38 +13,42 @@
 </head>
 
 <body class="bg-gray-100">
-
     <!-- Login Form Container -->
-    <div class="flex items-center justify-center min-h-[53.7rem]">
+    <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-sm p-8 bg-white shadow-lg rounded-lg">
-            <h2 class="text-3xl font-semibold text-center mb-6">Login to Travela</h2>
+            <h2 class="text-3xl font-semibold text-center mb-6">Login ke Travela</h2>
 
             <!-- Login Form -->
             <form action="/login" method="POST">
-                <!-- CSRF Token (for Laravel or similar frameworks) -->
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                @csrf
                 <!-- Email Field -->
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input type="email" id="email" name="email" required class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="you@example.com">
+                    <input type="email" id="email" name="email" required
+                        class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="you@example.com">
                 </div>
 
                 <!-- Password Field -->
                 <div class="mb-6">
                     <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
-                    <input type="password" id="password" name="password" required class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Your password">
+                    <input type="password" id="password" name="password" required
+                        class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="Your password">
                 </div>
 
                 <!-- Login Button -->
-                <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit"
+                    class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Login
                 </button>
             </form>
 
             <!-- Register Link -->
             <div class="mt-4 text-center">
-                <p class="text-sm text-gray-500">Don't have an account? <a href="/register" class="text-blue-500 hover:text-blue-600">Create one</a></p>
+                <p class="text-sm text-gray-500">Belum punya akun? <a href="/register"
+                        class="text-blue-500 hover:text-blue-600">Buat akun</a></p>
+
             </div>
         </div>
     </div>
