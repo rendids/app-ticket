@@ -15,8 +15,13 @@ Route::get("/", [HomeController::class, "index"])->name("index");
 
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login_action'])->name('login.action');
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'register_action'])->name('register.action');
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 // Rute untuk halaman destinasi

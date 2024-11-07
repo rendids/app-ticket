@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    
+
     <div class="navbar bg-base-100  px-6 h-25 top-0 ">
         <div class="flex-1">
             <a class="btn btn-ghost text-xl font">Travela</a>
@@ -25,10 +25,27 @@
                 <li><a href="{{ route('tours') }}">Paket Tur</a></li>
                 <li><a href="{{ route('about') }}">Tentang Kami</a></li>
                 <li><a href="{{ route('contact') }}">Kontak</a></li>
-                <li class="flex flex-row gap-3 ml-3">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-secondary btn-sm">Register</a>
-                </li>
+                @if (Auth::check())
+                    {{-- Content for authenticated users --}}
+                    <li class="flex flex-row gap-3 ml-3">
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                            @csrf
+                            <a href="#"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                class="text-error hover:text-primary cursor-pointer">
+                                Logout
+                            </a>
+                        </form>
+
+                    </li>
+                @else
+                    {{-- Content for guests --}}
+                    <li class="flex flex-row gap-3 ml-3">
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-sm">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-secondary btn-sm">Register</a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>
