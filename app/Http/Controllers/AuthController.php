@@ -9,68 +9,71 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Display the login form
+    // Menampilkan form login
     public function login()
     {
         return view("auth.login");
     }
 
-    // Handle login action
+    // Menangani aksi login
     public function login_action(Request $request)
     {
-        // Validate incoming request
+        // Validasi data yang diterima
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:8',
         ]);
 
-        // Attempt to authenticate and log in the user
+        // Mencoba melakukan autentikasi dan login user
         if (Auth::attempt($request->only('email', 'password'))) {
 
-            if(Auth::user()->role == 'admin'){
+            if (Auth::user()->role == 'admin') {
                 return redirect()->intended('/dashboard');
-            }else{
-                return redirect()->intended('/')->with('success', 'Successfully logged in');
+            } else {
+                return redirect()->intended('/')->with('success', 'Berhasil login');
             }
         }
 
-        // If authentication fails, redirect back with an error
+        // Jika autentikasi gagal, kembali dengan pesan error
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
         ])->withInput();
     }
 
-    // Display the registration form
+    // Menampilkan form registrasi
     public function register()
     {
         return view("auth.register");
     }
 
-    // Handle registration action
+    // Menangani aksi registrasi
     public function register_action(Request $request)
     {
-        // Validate incoming request
+        // Validasi data yang diterima
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email|max:255',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Create a new user
-        User::create([
+        // Membuat user baru
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Redirect to the login page with a success message
-        return redirect('/login')->with('success', 'Registration successful! Please log in.');
+        // Melakukan login otomatis setelah registrasi
+        Auth::login($user);
+
+        // Redirect ke halaman utama dengan pesan sukses
+        return redirect('/')->with('success', 'Pendaftaran berhasil!');
     }
 
-    // Handle user logout
+    // Menangani aksi logout
     public function logout()
     {
         Auth::logout();
-        return redirect('/login')->with('success', 'Successfully logged out');
+        return redirect('/')->with('success', 'Berhasil logout');
     }
 }

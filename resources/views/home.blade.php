@@ -7,12 +7,12 @@
       <div class="max-w-md">
         <h1 class="mb-5 text-5xl font-bold">Selamat Datang di Destinasi Wisata Kami</h1>
         <p class="mb-5">Temukan keindahan alam dan budaya yang menakjubkan di setiap sudut.</p>
-        <button class="btn btn-primary">Jelajahi Sekarang</button>
+        <a href="#destinasi" class="btn btn-primary">Jelajahi Sekarang</a>
       </div>
     </div>
   </section>
 
-    <section class="py-3 bg-gray-100">
+    <section class="py-3 bg-gray-100" id="destinasi">
         <div class="container mx-auto p-6">
             <div class="container mx-auto text-center mb-8">
                 <h2 class="text-3xl font-semibold mb-4">Destinasi Wisata Populer</h2>

@@ -19,17 +19,6 @@
         <div class="w-full max-w-sm p-8 bg-white shadow-lg rounded-lg">
             <h2 class="text-3xl font-semibold text-center mb-6">Create an Account</h2>
 
-            <!-- Display General Errors -->
-            @if ($errors->any())
-                <div class="mb-4 p-4 bg-red-100 text-red-600 border border-red-300 rounded-md">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <!-- Register Form -->
             <form action="{{ route('register.action') }}" method="POST">
                 @csrf

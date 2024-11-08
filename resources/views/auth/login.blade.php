@@ -24,9 +24,12 @@
                 <!-- Email Field -->
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-                    <input type="email" id="email" name="email" required
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" required
                         class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         placeholder="you@example.com">
+                    @error('email')
+                        <div class="text-xs text-red-600">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <!-- Password Field -->
@@ -35,6 +38,9 @@
                     <input type="password" id="password" name="password" required
                         class="w-full p-3 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         placeholder="Your password">
+                    @error('password')
+                        <div class="text-xs text-red-600">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <!-- Login Button -->

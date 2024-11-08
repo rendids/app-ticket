@@ -13,6 +13,36 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <!-- Modal -->
+        <input type="checkbox" id="success-popup" class="modal-toggle" checked />
+        <div class="modal">
+            <div class="modal-box bg-green-100 text-green-700">
+                <!-- Icon and Message -->
+                <div class="flex items-center mb-4">
+                    <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <h2 class="font-semibold text-lg">Success!</h2>
+                </div>
+
+                <p>{{ session('success') }}</p>
+
+                <!-- Close Button -->
+                <div class="modal-action">
+                    <label for="success-popup" class="btn btn-sm btn-success">Close</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auto-close after 5 seconds -->
+        <script>
+            setTimeout(function() {
+                document.getElementById('success-popup').checked = false;
+            }, 1500);
+        </script>
+    @endif
 
     <div class="navbar bg-base-100  px-6 h-25 top-0 ">
         <div class="flex-1">
