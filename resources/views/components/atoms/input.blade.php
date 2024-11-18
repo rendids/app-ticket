@@ -1,0 +1,1 @@
+<input type="{{ $type ?? 'text' }}" class="form-control {{ $class ?? '' }}" id="{{ $id ?? '' }}" name="{{ $name ?? '' }}" value="{{ $value ?? '' }}" placeholder="{{ $placeholder ?? '' }}" {{ $attributes }}>

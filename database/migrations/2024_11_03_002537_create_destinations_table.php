@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');  // Nama destinasi (misalnya Bali, Yogyakarta, dll)
             $table->text('description');  // Deskripsi tentang destinasi
-            $table->string('location'); 
+            $table->string('location');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
