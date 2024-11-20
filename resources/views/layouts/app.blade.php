@@ -34,11 +34,13 @@
             <!-- partial -->
             <div class="main-panel">
                 <!--content-wrapper-->
-                @yield('content')
+                <div class="content-wrapper">
+                    @yield('content')
+                </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:partials/_footer.html -->
-                <x-partial.footer></x-partial.footer>
                 <!-- partial -->
+                <x-partial.footer></x-partial.footer>
             </div>
             <!-- main-panel ends -->
         </div>

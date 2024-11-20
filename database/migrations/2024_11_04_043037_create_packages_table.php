@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('destination_id')->constrained('destinations')->onDelete('cascade'); // Foreign key to destinations table
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 15, 2);

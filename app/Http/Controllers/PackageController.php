@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Destination;
 use App\Models\Package;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('admin.package');
+        $tourPackages = Package::all();
+        return view('admin.package.index', compact('tourPackages'));
     }
 
     /**
@@ -20,7 +22,9 @@ class PackageController extends Controller
      */
     public function create()
     {
-        //
+        echo 'aaa';
+        $destinations = Destination::all();
+        return view('admin.package.create', compact('destinations'));
     }
 
     /**
@@ -34,9 +38,9 @@ class PackageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Package $package) {
+    public function show(Package $package)
+    {
         return view('packages.show', compact('package'));
-
     }
 
     /**

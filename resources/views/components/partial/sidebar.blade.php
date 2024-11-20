@@ -18,7 +18,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.packages.index') }}">
+            <a class="nav-link" href="{{ route('admin.package.index') }}">
                 <i class="menu-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Foreign key to users table
+            $table->foreignId('tour_package_id')->constrained('packages')->onDelete('cascade'); // Foreign key to tour_packages table
+            $table->dateTime('purchase_date');
+            $table->dateTime('departure_date');
+            $table->enum('status', ['Pending', 'Confirmed', 'Cancelled']);
+            $table->decimal('total_price', 10, 2);
+            $table->enum('payment_status', ['Paid', 'Pending']);
             $table->timestamps();
         });
     }
