@@ -32,7 +32,7 @@ Route::get("/tours", [HomeController::class, "tours"])->name("tours");
 Route::get("/about", [HomeController::class, "about"])->name("about");
 Route::get("/contact", [HomeController::class, "contact"])->name("contact");
 
-Route::get('package/{id}', [PackageController::class, 'show'])->name('package.show');
+// Route::get('package/{id}', [PackageController::class, 'show'])->name('package.show');
 Route::post('purchase', [PurchaseController::class, 'store']);
 
 Route::get('purchases', [PurchaseController::class, 'history']);
@@ -47,11 +47,11 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('users/delete/{id}', [AdminUserController::class,'destroy'])->name('admin.user.destroy');
 
     Route::get('package', [PackageController::class, 'index'])->name('admin.package.index');
-    Route::get('package/creaste', [PackageController::class, 'create'])->name('admin.package.create');
+    Route::get('package/create', [PackageController::class, 'create'])->name('admin.package.create');
     Route::post('package', [PackageController::class, 'store'])->name('admin.package.store');
     Route::get('package/{id}/edit', [PackageController::class, 'edit'])->name('admin.package.edit');
-    Route::put('package/{id}/update', [PackageController::class, 'update'])->name('admin.package.update');
-    Route::delete('package/{id}/delete', [PackageController::class, 'destroy'])->name('admin.package.destroy');
+    Route::put('package/{id}', [PackageController::class, 'update'])->name('admin.package.update');
+    Route::delete('package/{id}', [PackageController::class, 'destroy'])->name('admin.package.destroy');
 
     Route::get('tickets/create', [TicketController::class, 'create'])->name('admin.tickets.create');
     Route::post('tickets', [TicketController::class, 'store'])->name('admin.tickets.store');
