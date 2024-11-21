@@ -42,23 +42,23 @@ Route::get('purchases/{id}', [PurchaseController::class, 'show']);
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-    Route::get('users', [AdminUserController::class,'index'])->name('admin.user.index');
-    Route::put('users/update/{id}', [AdminUserController::class,'update'])->name('admin.user.update');
-    Route::delete('users/delete/{id}', [AdminUserController::class,'destroy'])->name('admin.user.destroy');
+    Route::get('users', [AdminUserController::class, 'index'])->name('admin.user.index');
+    Route::put('users/update/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
+    Route::delete('users/delete/{id}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
 
     Route::get('package', [PackageController::class, 'index'])->name('admin.package.index');
     Route::get('package/create', [PackageController::class, 'create'])->name('admin.package.create');
     Route::post('package', [PackageController::class, 'store'])->name('admin.package.store');
-    Route::get('package/{id}/edit', [PackageController::class, 'edit'])->name('admin.package.edit');
-    Route::put('package/{id}', [PackageController::class, 'update'])->name('admin.package.update');
-    Route::delete('package/{id}', [PackageController::class, 'destroy'])->name('admin.package.destroy');
-
-    Route::get('tickets/create', [TicketController::class, 'create'])->name('admin.tickets.create');
-    Route::post('tickets', [TicketController::class, 'store'])->name('admin.tickets.store');
-    Route::get('tickets/{id}/edit', [TicketController::class, 'edit'])->name('admin.tickets.edit');
-    Route::put('tickets/{id}', [TicketController::class, 'update'])->name('admin.tickets.update');
-    Route::delete('tickets/{id}', [TicketController::class, 'destroy'])->name('admin.tickets.destroy');
+    Route::get('package/{package}/edit', [PackageController::class, 'edit'])->name('admin.package.edit');
+    Route::put('package/{package}', [PackageController::class, 'update'])->name('admin.package.update');
+    Route::delete('package/{package}', [PackageController::class, 'destroy'])->name('admin.package.destroy');
 
     Route::get('destination', [DestinationController::class, 'index'])->name('admin.destination');
+    Route::get('destination/create', [DestinationController::class, 'create'])->name('admin.destination.create');
+    Route::post('destination', [DestinationController::class, 'store'])->name('admin.destination.store');
+    Route::get('destination/{id}/edit', [DestinationController::class, 'edit'])->name('admin.destination.edit');
+    Route::put('destination/{id}', [DestinationController::class, 'update'])->name('admin.destination.update');
+    Route::delete('destination/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.destroy');
+
     Route::get('history', [AdminController::class, 'history'])->name('admin.history');
 });

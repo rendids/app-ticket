@@ -2,68 +2,108 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destination;
 use App\Models\Package;
+use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PackageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Menampilkan halaman index (list of packages)
     public function index()
     {
-        $tourPackages = Package::all();
-        return view('admin.package.index', compact('tourPackages'));
+        $packages = Package::with('destination')->get(); // Mengambil semua data paket dengan relasi destination
+        return view('admin.package.index', compact('packages'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Menampilkan form untuk membuat paket baru
     public function create()
     {
-        echo 'aaa';
-        $destinations = Destination::all();
+        $destinations = Destination::all(); // Mengambil data destinasi
         return view('admin.package.create', compact('destinations'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Menyimpan data paket baru
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'duration' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Menyimpan file gambar jika ada
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        // Membuat data paket
+        Package::create([
+            'destination_id' => $request->destination_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('admin.package.index')->with('success', 'Paket berhasil dibuat.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Package $package)
-    {
-        return view('packages.show', compact('package'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Menampilkan form untuk mengedit paket
     public function edit(Package $package)
     {
-        //
+        $destinations = Destination::all(); // Mengambil data destinasi
+        return view('admin.package.edit', compact('package', 'destinations'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Mengupdate data paket
     public function update(Request $request, Package $package)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'duration' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Menyimpan file gambar baru jika ada
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama
+            if ($package->image) {
+                Storage::disk('public')->delete($package->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+            $package->image = $imagePath;
+        }
+
+        // Update data paket
+        $package->update([
+            'destination_id' => $request->destination_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'duration' => $request->duration,
+        ]);
+
+        return redirect()->route('admin.package.index')->with('success', 'Paket berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Menghapus data paket
     public function destroy(Package $package)
     {
-        //
+        // Hapus gambar terkait jika ada
+        if ($package->image) {
+            Storage::disk('public')->delete($package->image);
+        }
+
+        // Hapus paket
+        $package->delete();
+
+        return redirect()->route('admin.package.index')->with('success', 'Paket berhasil dihapus.');
     }
 }

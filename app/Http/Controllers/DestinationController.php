@@ -1,65 +1,101 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class DestinationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Display a list of all destinations
     public function index()
     {
-        return view('admin.destination');
+        $destinations = Destination::all();
+        return view('admin.destination.index', compact('destinations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Show the form to create a new destination
     public function create()
     {
-        //
+        return view('admin.destination.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store a newly created destination
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'location' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        Destination::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'location' => $request->location,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('admin.destination')->with('success', 'Destination created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Destination $destination)
+    // Show the form to edit an existing destination
+    public function edit($id)
     {
-        //
+        $destination = Destination::findOrFail($id);
+        return view('admin.destination.edit', compact('destination'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Destination $destination)
+    // Update the specified destination
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'location' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $destination = Destination::findOrFail($id);
+
+        $imagePath = $destination->image;  // Keep the existing image if no new one is uploaded
+        if ($request->hasFile('image')) {
+            // Delete the old image if a new one is uploaded
+            if ($destination->image) {
+                Storage::disk('public')->delete($destination->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        $destination->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'location' => $request->location,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('admin.destination')->with('success', 'Destination updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Destination $destination)
+    // Delete the specified destination
+    public function destroy($id)
     {
-        //
-    }
+        $destination = Destination::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Destination $destination)
-    {
-        //
+        // Delete the image file if it exists
+        if ($destination->image) {
+            Storage::disk('public')->delete($destination->image);
+        }
+
+        $destination->delete();
+
+        return redirect()->route('admin.destination')->with('success', 'Destination deleted successfully.');
     }
 }

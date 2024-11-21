@@ -7,10 +7,16 @@ use App\Models\Package;
 
 class Destination extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'description',
+        'location',
+        'image'
+    ];
+    
     public function package()
     {
         return $this->hasMany(Package::class);
     }
-
-
 }
