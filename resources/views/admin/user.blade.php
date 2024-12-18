@@ -24,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
@@ -74,7 +74,13 @@
                                     <h5><strong>Email:</strong> {{ $user->email }}</h5>
                                     <h5><strong>Tanggal Dibuat:</strong> {{ $user->created_at->format('d-m-Y H:i') }}</h5>
                                 </x-organisms.modal>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <td colspan="5">
+                                        <x-empty message="Belum Ada User Yang Terdaftar" />
+                                    </td>
+                                </tr>
+                                @endforelse
                         </tbody>
                     </table>
                 </div>

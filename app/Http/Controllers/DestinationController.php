@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Destination;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,13 +42,14 @@ class DestinationController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'image' => $imagePath,
+            'slug' => Str::slug($request->name, '-')
         ]);
 
         return redirect()->route('admin.destination')->with('success', 'Destination created successfully.');
     }
 
     // Show the form to edit an existing destination
-    public function edit($id)
+    public function edit($id)  
     {
         $destination = Destination::findOrFail($id);
         return view('admin.destination.edit', compact('destination'));
@@ -79,6 +81,8 @@ class DestinationController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'image' => $imagePath,
+            'slug' => Str::slug($request->name, '-')
+
         ]);
 
         return redirect()->route('admin.destination')->with('success', 'Destination updated successfully.');

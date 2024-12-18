@@ -28,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($destinations as $destination)
+                        @forelse ($destinations as $destination)
                             <tr class="text-center">
                                 <td>
                                     {{ $destination->name }}</td>
@@ -56,7 +56,13 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td colspan="5">
+                                <x-empty message="Belum Ada Destinasi, Tambahkan Terlebih Dahulu" />
+                            </td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

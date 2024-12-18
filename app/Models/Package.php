@@ -14,6 +14,7 @@ class Package extends Model
         'price',          // Harga paket
         'duration',       // Durasi paket (opsional)
         'image',          // Gambar yang terkait (opsional)
+        'slug',
     ];
     public function destination()
     {

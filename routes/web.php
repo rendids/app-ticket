@@ -26,20 +26,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-// Rute untuk halaman destinasi
 Route::get("/destinations", [HomeController::class, "destinations"])->name("destinations");
+Route::get("/destination/{destination:slug}", [HomeController::class, "detailDestination"])->name("destination.detail");
+Route::get("purchase/{package:slug}", [PurchaseController::class, "index"])->name("purchase.index");
+
 Route::get("/tours", [HomeController::class, "tours"])->name("tours");
 Route::get("/about", [HomeController::class, "about"])->name("about");
 Route::get("/contact", [HomeController::class, "contact"])->name("contact");
 
-// Route::get('package/{id}', [PackageController::class, 'show'])->name('package.show');
-Route::post('purchase', [PurchaseController::class, 'store']);
-
-Route::get('purchases', [PurchaseController::class, 'history']);
-Route::get('purchases/{id}', [PurchaseController::class, 'show']);
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     Route::get('users', [AdminUserController::class, 'index'])->name('admin.user.index');

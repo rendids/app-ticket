@@ -12,9 +12,10 @@ class Destination extends Model
         'name',
         'description',
         'location',
-        'image'
+        'image',
+        'slug'
     ];
-    
+
     public function package()
     {
         return $this->hasMany(Package::class);

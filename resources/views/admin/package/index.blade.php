@@ -13,15 +13,17 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    @foreach ($packages as $package)
+                    @forelse ($packages as $package)
                         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                             <div class="card">
                                 <img src="{{ Storage::url($package->image) }}" class="card-img-top"
                                     alt="{{ $package->name }}" style="height: 200px; object-fit: cover;">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $package->name }}</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="card-title">{{ $package->name }}</h5>
+                                        <strong>Harga:</strong>Rp,{{ number_format($package->price, 0, ',', '.') }}<br>
+                                    </div>
                                     <p class="card-text">
-                                        <strong>Harga:</strong> {{ number_format($package->price, 0, ',', '.') }}<br>
                                         <strong>Durasi:</strong> {{ $package->duration }}<br>
                                         <strong>Destinasi:</strong> {{ $package->destination->name ?? 'Unknown' }}<br>
                                         <strong>Tanggal Dibuat:</strong> {{ $package->created_at->format('d-m-Y') }}
@@ -66,7 +68,7 @@
                                     <div class="modal-body">
                                         <h5>{{ $package->name }}</h5>
                                         <p><strong>Harga:</strong> {{ number_format($package->price, 0, ',', '.') }}</p>
-                                        <p><strong>Durasi:</strong> {{ $package->duration }} bulan</p>
+                                        <p><strong>Durasi:</strong> {{ $package->duration }} Hari</p>
                                         <p><strong>Deskripsi:</strong> {{ $package->description }}</p>
                                         <p><strong>Destinasi:</strong> {{ $package->destination->name }}</p>
                                         @if ($package->image)
@@ -82,7 +84,13 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5">
+                                <x-empty message="Belum Ada Paket Wisata, Tambahkan Terlebih dahulu" />
+                            </td>
+                        </tr>
+                    @endforelse
                 </div>
             </div>
         </div>

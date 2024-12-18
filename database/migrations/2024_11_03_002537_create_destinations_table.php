@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');  // Nama destinasi (misalnya Bali, Yogyakarta, dll)
-            $table->text('description');  // Deskripsi tentang destinasi
+            $table->string('name');
+            $table->text('description');
             $table->string('location');
+            $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->timestamps();
         });

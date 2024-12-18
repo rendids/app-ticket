@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Package;
 use App\Models\Destination;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,6 +43,7 @@ class PackageController extends Controller
 
         // Membuat data paket
         Package::create([
+            'slug' => Str::slug($request->name, '-'),
             'destination_id' => $request->destination_id,
             'name' => $request->name,
             'description' => $request->description,
@@ -83,6 +85,7 @@ class PackageController extends Controller
 
         // Update data paket
         $package->update([
+            'slug' => Str::slug($request->name, '-'),
             'destination_id' => $request->destination_id,
             'name' => $request->name,
             'description' => $request->description,
