@@ -22,9 +22,4 @@ class Purchase extends Model
         return $this->belongsTo(Package::class);
     }
 
-    // Relasi dengan PaymentTransaction
-    public function paymentTransaction()
-    {
-        return $this->hasOne(PaymentTransaction::class);
-    }
 }

@@ -19,11 +19,10 @@
                                 <img src="{{ Storage::url($package->image) }}" class="card-img-top"
                                     alt="{{ $package->name }}" style="height: 200px; object-fit: cover;">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <h5 class="card-title">{{ $package->name }}</h5>
-                                        <strong>Harga:</strong>Rp,{{ number_format($package->price, 0, ',', '.') }}<br>
-                                    </div>
+                                    <h5 class="card-title">{{ $package->name }}</h5>
+                                    <br>
                                     <p class="card-text">
+                                        <strong>Harga:</strong>Rp,{{ number_format($package->price, 0, ',', '.') }}<br>
                                         <strong>Durasi:</strong> {{ $package->duration }}<br>
                                         <strong>Destinasi:</strong> {{ $package->destination->name ?? 'Unknown' }}<br>
                                         <strong>Tanggal Dibuat:</strong> {{ $package->created_at->format('d-m-Y') }}

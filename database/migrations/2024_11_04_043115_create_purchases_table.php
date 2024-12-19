@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('departure_date');
             $table->enum('status', ['Pending', 'Confirmed', 'Cancelled']);
             $table->decimal('total_price', 10, 2);
-            $table->enum('payment_status', ['Paid', 'Pending']);
+            $table->integer('quantity')->default(1); 
             $table->timestamps();
         });
     }

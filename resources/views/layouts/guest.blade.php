@@ -57,6 +57,7 @@
                 @if (Auth::check())
                     {{-- Content for authenticated users --}}
                     <li class="flex flex-row gap-3 ml-3">
+                        <a href="{{ route('profile', Auth::user()->name) }}" class="text-blue-700 hover:text-primary cursor-pointer">Profile</a>
                         <form method="POST" action="{{ route('logout') }}" id="logout-form">
                             @csrf
                             <a href="#"
@@ -65,7 +66,6 @@
                                 Logout
                             </a>
                         </form>
-
                     </li>
                 @else
                     {{-- Content for guests --}}
@@ -74,8 +74,8 @@
                         <a href="{{ route('register') }}" class="btn btn-secondary btn-sm">Register</a>
                     </li>
                 @endif
-
             </ul>
+
         </div>
     </div>
 

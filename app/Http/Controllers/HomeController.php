@@ -11,25 +11,30 @@ class HomeController extends Controller
     public function index()
     {
         $destinations = Destination::take(12)->get();
-        // dd($destinations);
-        return view('home', compact('destinations'));
+        $packages = Package::take(12)->get();
+        return view('home', compact('destinations', 'packages'));
     }
 
     public function destinations()
     {
-        return view('destination.index');
+        $destinations = Destination::all();
+        return view('destination.index', compact('destinations'));
     }
 
     public function detailDestination(Destination $destination)
     {
         $packages = Package::where('destination_id', $destination->id)->get();
-        return view ('destination.show', compact('packages','destination'));
+        return view ('destination.show',compact('packages','destination'));
+    }
+    public function detailPackage(Package $package)
+    {
+        return view('packages_tour.detail', compact('package'));
     }
 
     public function tours()
     {
-        // Kode untuk menampilkan halaman paket tour
-        return view('packages_tour.tours');
+        $packages = Package::all();
+        return view('packages_tour.tours', compact('packages'));
     }
 
     public function about()

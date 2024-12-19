@@ -49,14 +49,13 @@ class DestinationController extends Controller
     }
 
     // Show the form to edit an existing destination
-    public function edit($id)  
+    public function edit(Destination $destination)
     {
-        $destination = Destination::findOrFail($id);
         return view('admin.destination.edit', compact('destination'));
     }
 
     // Update the specified destination
-    public function update(Request $request, $id)
+    public function update(Request $request, Destination $destination)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -64,8 +63,6 @@ class DestinationController extends Controller
             'location' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $destination = Destination::findOrFail($id);
 
         $imagePath = $destination->image;  // Keep the existing image if no new one is uploaded
         if ($request->hasFile('image')) {
@@ -89,9 +86,9 @@ class DestinationController extends Controller
     }
 
     // Delete the specified destination
-    public function destroy($id)
+    public function destroy(Destination $destination)
     {
-        $destination = Destination::findOrFail($id);
+        $destination = Destination::findOrFail($destination->id);
 
         // Delete the image file if it exists
         if ($destination->image) {
