@@ -46,12 +46,19 @@ class ProfileController extends Controller
         // Cek apakah password lama benar
         $user = Auth::user();
         if (!Hash::check($validatedData['current_password'], $user->password)) {
-            return redirect()->route('profile.edit')->withErrors(['current_password' => 'Password lama tidak sesuai']);
+            return redirect()->route('profile')->withErrors(['current_password' => 'Password lama tidak sesuai']);
         }
 
         User::where('id', $user->id)->update(['password' => Hash::make($validatedData['new_password'])]);
 
 
         return redirect()->route('profile')->with('success', 'Password berhasil diperbarui');
+    }
+
+    public function cancel(Purchase $purchase)
+    {
+        $purchase->update(['status' => 'Cancelled']);
+
+        return redirect()->route('profile')->with('success', 'Pesanan berhasil dibatalkan.');
     }
 }

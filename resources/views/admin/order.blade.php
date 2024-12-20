@@ -57,33 +57,36 @@
                                             <!-- Harga Total -->
                                             <td>{{ $order->phone }}</td> <!-- Nomor Telepon -->
                                             <td>
-                                                <!-- Buttons for accept and reject -->
-                                                <form action="{{ route('admin.order.accept', $order->id) }}" method="POST"
-                                                    style="display: inline;">
-                                                    @method('put')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-success btn-sm">Terima</button>
-                                                </form>
-
-                                                @if ($order->status === 'Pending')
-                                                    <!-- Tombol "Tolak" hanya ditampilkan jika status 'pending' -->
-                                                    <form action="{{ route('admin.order.reject', $order->id) }}"
+                                                @if ($order->status !== 'Rejected')
+                                                    <form action="{{ route('admin.order.accept', $order->id) }}"
                                                         method="POST" style="display: inline;">
-                                                        @csrf
                                                         @method('put')
-
-                                                        <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="btn btn-success btn-sm">Terima</button>
                                                     </form>
+
+                                                    @if ($order->status === 'Pending')
+                                                        <!-- Tombol "Tolak" hanya ditampilkan jika status 'pending' -->
+                                                        <form action="{{ route('admin.order.reject', $order->id) }}"
+                                                            method="POST" style="display: inline;">
+                                                            @csrf
+                                                            @method('put')
+
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">Tolak</button>
+                                                        </form>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>
-                                        @empty
+                                    @empty
                                         <tr>
                                             <td colspan="10">
                                                 <x-empty message="Belum Ada Pesanan Yang Harus Di Konfirmasi" />
                                             </td>
                                         </tr>
-                                        @endforelse
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

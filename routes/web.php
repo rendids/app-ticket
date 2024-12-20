@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
@@ -38,6 +37,8 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
         Route::post('order/{id}/store', [PurchaseController::class, 'store'])->name('order.store');
+        Route::put('/purchase/{purchase}/cancel', [ProfileController::class, 'cancel'])->name('purchase.cancel');
+
     });
 
     Route::middleware('checkrole:admin')->prefix('admin')->group(function () {

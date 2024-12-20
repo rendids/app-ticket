@@ -31,8 +31,9 @@ class PackageController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'duration' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'duration' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'destination_id' => 'required|exists:destinations,id'
         ]);
 
         // Menyimpan file gambar jika ada
@@ -69,8 +70,9 @@ class PackageController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'duration' => 'nullable|string',
+            'duration' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'destination_id' => 'required|exists:destinations,id'
         ]);
 
         // Menyimpan file gambar baru jika ada

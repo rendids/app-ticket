@@ -63,7 +63,8 @@
                                 class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <div>
-                            <label for="new_password_confirmation" class="text-lg text-gray-700">Konfirmasi Password Baru</label>
+                            <label for="new_password_confirmation" class="text-lg text-gray-700">Konfirmasi Password
+                                Baru</label>
                             <input type="password" name="new_password_confirmation" id="new_password_confirmation"
                                 class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
@@ -97,6 +98,7 @@
                                 <th class="px-4 py-2 border">ID Pesanan</th>
                                 <th class="px-4 py-2 border">Tanggal</th>
                                 <th class="px-4 py-2 border">Status</th>
+                                <th class="px-4 py-2 border">Aksi</th> <!-- Added column for action -->
                             </tr>
                         </thead>
                         <tbody>
@@ -104,12 +106,29 @@
                                 <tr class="bg-white text-gray-800 text-center">
                                     <td class="px-4 py-2 border">{{ $loop->iteration }}</td> <!-- Menampilkan nomor urut -->
                                     <td class="px-4 py-2 border">{{ $purchase->id }}</td> <!-- ID pesanan -->
-                                    <td class="px-4 py-2 border">{{ $purchase->purchase_date }}</td> <!-- Tanggal pembelian -->
+                                    <td class="px-4 py-2 border">{{ $purchase->purchase_date }}</td>
+                                    <!-- Tanggal pembelian -->
                                     <td class="px-4 py-2 border">{{ $purchase->status }}</td> <!-- Status pembelian -->
+                                    <td class="px-4 py-2 border">
+                                        @if ($purchase->status === 'Pending')
+                                            <!-- Condition to check if order can be cancelled -->
+                                            <form action="{{ route('purchase.cancel', $purchase->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit"
+                                                    class="bg-red-600 text-white py-1 px-4 rounded-lg hover:bg-red-700 transition">
+                                                    Batalkan
+                                                </button>
+                                            </form>
+                                        @elseif($purchase->status === 'Confirmed')
+                                            <span class="text-green-500">Selesai</span>
+                                        @else
+                                            <span class="text-gray-500">Dibatalkan</span>
+                                        @endif
+                                    </td> <!-- Cancel button column -->
                                 </tr>
                             @endforeach
                         </tbody>
-                        
                     </table>
                 </div>
             </div>
