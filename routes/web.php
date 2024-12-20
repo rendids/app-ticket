@@ -21,7 +21,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/destinations', [HomeController::class, 'destinations'])->name('destinations');
 Route::get('/destination/{destination:slug}', [HomeController::class, 'detailDestination'])->name('destination.detail');
-
+Route::get('package/{package:slug}', [HomeController::class, 'detailPackage'])->name('package.detail');
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'login_action'])->name('login.action');
@@ -38,7 +38,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
         Route::post('order/{id}/store', [PurchaseController::class, 'store'])->name('order.store');
-        Route::get('package/{package:slug}', [HomeController::class, 'detailPackage'])->name('package.detail');
     });
 
     Route::middleware('checkrole:admin')->prefix('admin')->group(function () {
@@ -61,6 +60,10 @@ Route::middleware('auth')->group(function () {
         Route::get('destination/{destination}', [DestinationController::class, 'edit'])->name('admin.destination.edit');
         Route::put('destination/{destination}', [DestinationController::class, 'update'])->name('admin.destination.update');
         Route::delete('destination/{destination}', [DestinationController::class, 'destroy'])->name('admin.destination.destroy');
+
+        Route::get('order', [AdminController::class, 'order'])->name('admin.order');
+        Route::put('order/{purchase}/accept', [AdminController::class, 'orderDone'])->name('admin.order.accept');
+        Route::put('order/{purchase}/reject', [AdminController::class, 'orderCancle'])->name('admin.order.reject');
 
         Route::get('history', [AdminController::class, 'history'])->name('admin.history');
     });

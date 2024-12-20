@@ -17,9 +17,10 @@ return new class extends Migration
             $table->foreignId('tour_package_id')->constrained('packages')->onDelete('cascade'); // Foreign key to tour_packages table
             $table->dateTime('purchase_date');
             $table->dateTime('departure_date');
-            $table->enum('status', ['Pending', 'Confirmed', 'Cancelled']);
+            $table->enum('status', ['Pending', 'Confirmed', 'Cancelled', 'Rejected'])->default('Pending');
             $table->decimal('total_price', 10, 2);
-            $table->integer('quantity')->default(1); 
+            $table->integer('quantity')->default(1);
+            $table->string('phone');
             $table->timestamps();
         });
     }

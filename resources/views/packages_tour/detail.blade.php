@@ -23,19 +23,29 @@
                     @csrf
                     <input type="hidden" name="tour_package_id" value="{{ $package->id }}">
 
-                    <!-- Tanggal Keberangkatan -->
-                    <div class="mb-6">
-                        <label for="departure_date" class="label text-lg">
-                            <span class="label-text">Tanggal Keberangkatan(minimal h-7 ) </span>
-                        </label>
-                        <input type="date" id="departure_date" name="departure_date" class="input input-bordered w-full p-4 rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500" required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="departure_date" class="label text-lg">
-                            <span class="label-text">Nomer Whatsapp</span>
-                        </label>
-                        <input type="number" id="whatspap" placeholder="contoh:6245678234" name="whatsapp" class="input input-bordered w-full p-4 rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500" required>
-                    </div>
+<!-- Tanggal Keberangkatan -->
+<div class="mb-6">
+    <label for="departure_date" class="label text-lg">
+        <span class="label-text">Tanggal Keberangkatan (maximal h+7 dari sekarang)</span>
+    </label>
+    <input type="date" id="departure_date" name="departure_date" value="{{ old('departure_date') }}" class="input input-bordered w-full p-4 rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500" required>
+    @error('departure_date')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+    @enderror
+</div>
+
+
+                    <!-- Nomer Whatsapp -->
+<div class="mb-6">
+    <label for="whatsapp" class="label text-lg">
+        <span class="label-text">Nomor Whatsapp</span>
+    </label>
+    <input type="number" id="whatsapp" placeholder="contoh:6245678234" name="whatsapp" value="{{ old('whatsapp') }}" class="input input-bordered w-full p-4 rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500" required>
+    @error('whatsapp')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+    @enderror
+</div>
+
 
                     <!-- Jumlah dan Harga Total -->
                     <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -65,6 +75,7 @@
                         <button type="submit" class="btn btn-primary px-8 py-3 text-white text-lg font-semibold rounded-md shadow-md hover:bg-indigo-700 transition-all duration-300">Pesan Paket</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

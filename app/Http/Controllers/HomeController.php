@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destination;
 use App\Models\Package;
+use App\Models\Destination;
 use Illuminate\Http\Request;
+use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {

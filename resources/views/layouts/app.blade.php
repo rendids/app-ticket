@@ -33,7 +33,7 @@
     <div class="app-wrapper">
         <x-partial.navbar />
         <x-partial.sidebar />
-        <main class="app-main">
+        <main class="app-main"> 
             @yield('content')
         </main>
         <x-partial.footer />

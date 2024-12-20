@@ -31,6 +31,18 @@
                         <p>Paket Tour</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.order') }}" class="nav-link">
+                        <i class="nav-icon bi bi-basket"></i>
+                        <p>Pesanan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.history') }}" class="nav-link">
+                        <i class="nav-icon bi bi-clock-history"></i>
+                        <p>History Pemesanan</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

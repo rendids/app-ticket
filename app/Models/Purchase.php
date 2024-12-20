@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     protected $fillable = [
-        'user_id', 'tour_package_id', 'purchase_date', 'departure_date', 'status', 'total_price', 'payment_status'
+        'user_id', 'tour_package_id', 'purchase_date', 'departure_date', 'status', 'total_price', 'payment_status', 'quantity', 'phone'
     ];
 
     // Relasi dengan User
